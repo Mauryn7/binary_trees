@@ -34,5 +34,5 @@ A complete binary tree is when all levels except the last level is filled and al
 
 
 ## Contributors ##
-Mauureen Mbugua 
+Maureen Mbugua 
 Hanif Anwar Miyanji 
