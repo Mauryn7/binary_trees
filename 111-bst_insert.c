@@ -6,6 +6,7 @@ bst_t *recurse_for_bst_insert(bst_t *tree, int value);
  * @value: value to stored in inserted node
  *
  * Return: pointer to inserted node; NULL on failure
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
