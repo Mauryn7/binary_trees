@@ -5,7 +5,9 @@
  * @size: number of elements in array
  *
  * Return: pointer to root of BST; NULL on failure
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
+
 bst_t *array_to_bst(int *array, size_t size)
 {
 	bst_t *tree = NULL;
