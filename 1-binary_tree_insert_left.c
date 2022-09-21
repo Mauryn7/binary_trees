@@ -5,6 +5,7 @@
  * @value: value stored in node
  *
  * Return: pointer to created node; NULL on failure
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 {
