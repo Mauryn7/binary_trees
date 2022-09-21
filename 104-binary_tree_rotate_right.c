@@ -5,6 +5,7 @@
  * @tree: pointer to the root node
  * Description: 23. Rotate right
  * Return: pointer to new root node
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 {
