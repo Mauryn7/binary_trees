@@ -7,6 +7,7 @@ void recurse_for_levelorder(const binary_tree_t *tree,
  * binary_tree_levelorder - traverse tree by level
  * @tree: tree to traverse
  * @func: function pointer
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
