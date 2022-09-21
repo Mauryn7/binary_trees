@@ -7,6 +7,7 @@
  * Return: see below
  * 1. upon success, return depth
  * 2. upon fail, return 0
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
