@@ -7,6 +7,7 @@ binary_tree_t *recurse_for_ancestor(binary_tree_t *root,
  * @second: second node to find ancestor for
  *
  * Return: pointer to lowest common ancestor; NULL on failure
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	const binary_tree_t *second)
