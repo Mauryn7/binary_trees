@@ -6,6 +6,7 @@ size_t binary_tree_size(const binary_tree_t *tree);
  * @tree: pointer to root of tree
  *
  * Return: 1 if complete; 0 if incomplete
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
