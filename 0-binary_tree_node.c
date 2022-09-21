@@ -7,6 +7,7 @@
  * Return: see below
  * 1. upon success, return pointer to new node
  * 2. upon fail, return NULL
+ * Authors: Hanif Miyanji & Maureen Mbugua
  */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
