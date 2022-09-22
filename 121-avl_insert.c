@@ -1,4 +1,7 @@
 #include "binary_trees.h"
+bst_t *recurse_for_bst_insert(bst_t *tree, int value);
+bst_t *bst_insert(bst_t **tree, int value);
+void recurse_for_balance(binary_tree_t *tree);
 
 /**
  * avl_insert - insert node into AVL
@@ -9,62 +12,101 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-int bval;
+    bst_t *new_node = NULL, *parent = NULL;
 
-	if (*tree == NULL)
-		return (*new = binary_tree_node(parent, nval));
-	if ((*tree)->n > nval)
-	{
-		(*tree)->left = r_insert_node(&(*tree)->left, *tree, new, nval);
-		if ((*tree)->left == NULL)
-			return (NULL);
-	}
-	else if ((*tree)->n < nval)
-	{
-		(*tree)->right = r_insert_node(&(*tree)->right, *tree, new, nval);
-		if ((*tree)->right == NULL)
-			return (NULL);
-	}
-	else
-	{
-		return (*tree);
-	}
-	bval = binary_tree_balance(*tree);
-	if (bval > 1 && (*tree)->left->n > nval)
-	{
-		*tree = binary_tree_rotate_right(*tree);
-	}
-	else if (bval > 1 && (*tree)->left->n < nval)
-	{
-		(*tree)->left = binary_tree_rotate_left((*tree)->left);
-		*tree = binary_tree_rotate_right(*tree);
-	}
-	else if (bval < -1 && (*tree)->right->n < nval)
-	{
-		*tree = binary_tree_rotate_left(*tree);
-	}
-	else if (bval < -1 && (*tree)->right->n > nval)
-	{
-		(*tree)->right = binary_tree_rotate_right((*tree)->right);
-		*tree = binary_tree_rotate_left(*tree);
-	}
-	return (*tree);
+    /* if double pointer is empty */
+    if (tree == NULL)
+        return (NULL);
+
+    /* if tree doesn't exist, create one */
+    if (*tree == NULL)
+    {
+        *tree = binary_tree_node(*tree, value);
+        return (*tree);
+    }
+
+    /* find parent node for new node */
+    parent = recurse_for_bst_insert(*tree, value);
+
+    if (parent) /* if parent was found, create new node*/
+        new_node = binary_tree_node(parent, value);
+    else
+        return (NULL);
+
+    /* point parent to new node */
+    if (value < parent->n)
+        parent->left = new_node;
+    else
+        parent->right = new_node;
+
+    /* re-balance tree */
+    recurse_for_balance(new_node);
+
+    return (new_node);
 }
 /**
- * avl_insert - inserts a value into an AVL tree.
- * @tree: type **pointer to the root node of the AVL tree to insert into.
- * @value: value to store in the node to be inserted
- * Return: inserted node, or NULL if fails.
+ * recurse_for_balance - recurse upstream from new node
+ * @tree: pointer to root of tree
  */
-avl_t *avl_insert(avl_t **tree, int value)
+void recurse_for_balance(binary_tree_t *tree)
 {
-	avl_t *new = NULL;
+    int balFactor;
 
-	if (*tree == NULL)
-	{
-		*tree = binary_tree_node(NULL, value);
-		return (*tree);
-	}
-	r_insert_node(tree, *tree, &new, value);
-	return (new);	
+    if (!tree)
+        return;
+
+    printf("tree (in balance) = %d\n", tree->n);
+
+    /* take balance factor of every tree/subtree */
+    balFactor = binary_tree_balance(tree);
+
+    if (balFactor < -1)
+    {
+        binary_tree_print(tree);
+        tree = binary_tree_rotate_right(tree);
+        printf("Rotated right\n");
+    }
+    else if (balFactor > 1)
+    {
+        binary_tree_print(tree);
+        tree = binary_tree_rotate_left(tree);
+        printf("Rotated left\n");
+    }
+    /* recursively move up tree */
+    recurse_for_balance(tree->parent);
 }
+/**
+ * recurse_for_bst_insert - recursively search tree
+ * @tree: pointer to root of tree/subtree
+ * @value: value being added
+ *
+ * Return: pointer to parent of new node; NULL on failure
+ */
+bst_t *recurse_for_bst_insert(bst_t *tree, int value)
+{
+    if (!tree)
+        return (NULL);
+
+    /* if value is less than that in node */
+    if (value < tree->n)
+    {
+        if (tree->left != NULL)
+            return (recurse_for_bst_insert(tree->left, value));
+        else
+            return (tree);
+    }
+
+    /* if value is greater than that in node */
+    else if (value > tree->n)
+    {
+        if (tree->right != NULL)
+        {
+            return (recurse_for_bst_insert(tree->right, value));
+        }
+        else
+            return (tree);
+    }
+
+    /* will reach if value is equal to value in current node */
+    return (NULL);
+
